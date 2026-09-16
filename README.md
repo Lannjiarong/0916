@@ -2,6 +2,8 @@
 
 A modern personal landing page featuring a real-time digital clock, dynamic greetings, and an interactive identity card with dark glassmorphism styling.
 
+🔗 **Live Demo**: [https://lannjiarong.github.io/0916/](https://lannjiarong.github.io/0916/)
+
 ## 🚀 Features
 
 - **Precision Real-Time Clock**: Live hours, minutes, and seconds with smooth pulsing animations.
