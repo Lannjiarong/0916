@@ -4,6 +4,8 @@ A modern personal landing page featuring a real-time digital clock, dynamic gree
 
 🔗 **Live Demo**: [https://lannjiarong.github.io/0916/](https://lannjiarong.github.io/0916/)
 
+![Personal Page Live Demo Snapshot](assets/demo-snapshot.png)
+
 ## 🚀 Features
 
 - **Precision Real-Time Clock**: Live hours, minutes, and seconds with smooth pulsing animations.
