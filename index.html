@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Identity & Live Clock</title>
+  <meta name="description" content="A sleek, modern personal page featuring a precision real-time digital clock, dynamic greetings, and personalized profile card.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="cyan">
+  <!-- Dynamic Ambient Glow Background -->
+  <div class="ambient-glow glow-1" aria-hidden="true"></div>
+  <div class="ambient-glow glow-2" aria-hidden="true"></div>
+  <div class="ambient-glow glow-3" aria-hidden="true"></div>
+  <div class="grid-overlay" aria-hidden="true"></div>
+
+  <!-- Main Container -->
+  <main class="page-container" id="main-content">
+    
+    <!-- Top Utility Bar -->
+    <header class="top-nav">
+      <div class="greeting-pill" id="greeting-pill">
+        <span class="greeting-icon" id="greeting-icon">✨</span>
+        <span class="greeting-text" id="greeting-text">Good morning</span>
+      </div>
+
+      <div class="theme-picker" aria-label="Accent theme switcher">
+        <span class="theme-label">Accent</span>
+        <div class="theme-dots">
+          <button class="theme-dot active" data-color="cyan" title="Cyan Aurora" aria-label="Cyan Aurora theme" id="theme-cyan"></button>
+          <button class="theme-dot" data-color="violet" title="Electric Violet" aria-label="Electric Violet theme" id="theme-violet"></button>
+          <button class="theme-dot" data-color="emerald" title="Emerald Matrix" aria-label="Emerald Matrix theme" id="theme-emerald"></button>
+          <button class="theme-dot" data-color="amber" title="Solar Sunset" aria-label="Solar Sunset theme" id="theme-amber"></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Glassmorphism Card -->
+    <section class="profile-card" id="profile-card">
+      
+      <!-- Card Glow Accent Border -->
+      <div class="card-glow-border" aria-hidden="true"></div>
+
+      <!-- Avatar & Identity Section -->
+      <div class="profile-header">
+        <div class="avatar-container">
+          <div class="avatar-glow" aria-hidden="true"></div>
+          <div class="avatar-inner" id="avatar-initials">ME</div>
+          <div class="status-indicator" title="Active & Online" aria-label="Online status">
+            <span class="status-dot"></span>
+            <span class="status-pulse"></span>
+          </div>
+        </div>
+
+        <div class="identity-info">
+          <div class="name-row">
+            <h1 class="user-name" id="user-name" title="Click to edit name">Lannjiarong</h1>
+            <button class="edit-btn" id="edit-name-btn" aria-label="Edit display name" title="Click to customize your name">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Inline Name Editor Input (hidden by default) -->
+          <div class="name-edit-box hidden" id="name-edit-box">
+            <input type="text" id="name-input" class="name-input" maxlength="40" placeholder="Enter your name...">
+            <button class="save-btn" id="save-name-btn" aria-label="Save name">Save</button>
+            <button class="cancel-btn" id="cancel-name-btn" aria-label="Cancel">✕</button>
+          </div>
+
+          <div class="bio-row">
+            <p class="user-bio" id="user-bio" title="Click to edit bio">Software Crafter &amp; Technology Explorer</p>
+            <button class="edit-bio-btn" id="edit-bio-btn" aria-label="Edit bio" title="Click to customize your bio">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"></path>
+                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Inline Bio Editor Input (hidden by default) -->
+          <div class="bio-edit-box hidden" id="bio-edit-box">
+            <input type="text" id="bio-input" class="bio-input" maxlength="80" placeholder="Enter your bio or role...">
+            <button class="save-btn" id="save-bio-btn" aria-label="Save bio">Save</button>
+            <button class="cancel-btn" id="cancel-bio-btn" aria-label="Cancel">✕</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Live Clock Display Showcase -->
+      <div class="clock-display-panel" id="clock-panel">
+        <div class="clock-top-bar">
+          <span class="clock-label">CURRENT LOCAL TIME</span>
+          <div class="clock-format-switch">
+            <button class="format-btn active" id="btn-12h" aria-label="12-hour format">12H</button>
+            <span class="format-divider">/</span>
+            <button class="format-btn" id="btn-24h" aria-label="24-hour format">24H</button>
+          </div>
+        </div>
+
+        <div class="clock-digits-container" aria-live="polite">
+          <span class="clock-digit" id="clock-hours">10</span>
+          <span class="clock-separator" id="separator-1">:</span>
+          <span class="clock-digit" id="clock-minutes">19</span>
+          <span class="clock-separator" id="separator-2">:</span>
+          <span class="clock-digit clock-seconds" id="clock-seconds">00</span>
+          <span class="clock-period" id="clock-period">AM</span>
+        </div>
+
+        <div class="clock-meta">
+          <div class="date-tag" id="current-date">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <span id="date-text">Wednesday, September 16, 2026</span>
+          </div>
+
+          <div class="timezone-tag" id="current-timezone">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+            <span id="timezone-text">UTC+08:00</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action & Social Links -->
+      <div class="social-actions" id="social-actions">
+        <a href="https://github.com/Lannjiarong/0916" target="_blank" rel="noopener noreferrer" class="social-link" id="link-github" title="GitHub: Lannjiarong/0916">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+          </svg>
+          <span>GitHub</span>
+        </a>
+
+        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-link" id="link-linkedin" title="LinkedIn Profile">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
+
+        <a href="https://x.com" target="_blank" rel="noopener noreferrer" class="social-link" id="link-twitter" title="X / Twitter">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>X / Twitter</span>
+        </a>
+
+        <button class="social-link action-btn" id="btn-copy-email" title="Copy email address" aria-label="Copy email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span id="copy-email-text">Get in touch</span>
+        </button>
+      </div>
+
+    </section>
+
+    <!-- Footer Information -->
+    <footer class="page-footer">
+      <p class="tip-text">
+        <span class="tip-badge">Tip</span>
+        Click the pencil icon or your name to personalize your page. Preferences are saved automatically.
+      </p>
+    </footer>
+  </main>
+
+  <!-- Toast Notification Feedback -->
+  <div class="toast-notification hidden" id="toast" role="status" aria-live="polite">
+    <span class="toast-icon">✓</span>
+    <span class="toast-message" id="toast-message">Copied to clipboard!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
